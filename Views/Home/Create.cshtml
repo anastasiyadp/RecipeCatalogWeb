@@ -1,0 +1,26 @@
+﻿@model RecipeCatalogWeb.Models.Recipe
+
+@{
+    ViewBag.Title = "Добавление рецепта";
+}
+
+<h2>Добавление рецепта</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.Name, "Название")
+    <br />
+    @Html.EditorFor(model => model.Name)
+    <br /><br />
+    @Html.LabelFor(model => model.Instruction, "Инструкция")
+    <br />
+    @Html.EditorFor(model => model.Instruction)
+    <br /><br />
+    @Html.LabelFor(model => model.CategoryId, "Категория")
+    <br />
+    @Html.DropDownListFor(model => model.CategoryId, ViewBag.Categories as SelectList)
+    <br /><br />
+   
+    <input type="submit" value="Добавить" />
+}

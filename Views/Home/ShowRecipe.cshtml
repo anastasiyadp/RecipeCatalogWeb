@@ -1,0 +1,25 @@
+﻿@model RecipeCatalogWeb.Models.Recipe
+
+@{
+    ViewBag.Title = "ShowRecipe";
+}
+
+<fieldset>
+    <legend>@Model.Name</legend>
+
+    <div class="display-label"><b>Ингредиенты</b></div>
+    <ul>
+        @foreach (var c in ViewBag.Products)
+        {
+            <li>@c.Product.Name  @c.Quantity  @c.Product.UnitMeasure </li>
+        }
+    </ul>
+
+    <div class="display-label"><b>Инструкция</b></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Instruction)
+    </div>
+
+
+
+</fieldset>

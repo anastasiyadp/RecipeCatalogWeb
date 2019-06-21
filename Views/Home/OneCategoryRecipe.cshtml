@@ -1,0 +1,39 @@
+﻿@model IEnumerable<RecipeCatalogWeb.Models.Recipe>
+
+@{
+    ViewBag.Title = "Рецепты";
+}
+
+<a href="/Home/Create ">Создать</a>
+<table>
+    <tr>
+        <th>Название</th>
+        <th>Продукты</th>
+        <th></th>
+    </tr>
+    @foreach (var recipe in Model)
+    {
+    <tr>
+        <td>
+            @*@Html.DisplayFor(modelItem => item.name)*@
+            @Html.ActionLink(recipe.Name, "ShowRecipe", new { id = recipe.RecipeId })
+        </td>
+        <td>
+            @{
+                List<RecipeCatalogWeb.Models.Ingredient> ingredient = ViewBag.Products;
+               var productsInRecipe= ingredient.Where(ingr => ingr.RecipeId == recipe.RecipeId);
+            }
+            @foreach (var product in productsInRecipe)
+            {
+                @product.Product.Name @:
+            }
+            @*  @Html.DisplayFor(modelItem => item.products)*@
+            </td>
+        <td>
+            @Html.ActionLink("Удалить", "Delete", new { id = recipe.RecipeId })
+        @*<p><a href="/Home/Delete/@item.ID ">Удалить</a></p>*@
+            </td>
+    </tr>
+    }
+</table>
+
